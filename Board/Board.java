@@ -13,7 +13,6 @@ public class Board {
         cheio = false;
         limpaTabuleiro();
     }
-    
     public boolean[][] getOcupacao() {
         return ocupacao;
     }
