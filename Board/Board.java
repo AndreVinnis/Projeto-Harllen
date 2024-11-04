@@ -55,5 +55,14 @@ public class Board {
         if (row >= 0 && row < 3 && col >= 0 && col < 3) {
             return tabuleiro[row][col];
         }
-        return null; }
+        return null;}
+
+    //seta a carta. esses 2 metodos foram tentativas de fazer o jogo não terminar em empate na interface
+    public void setCarta(int row, int col, Card carta) {
+        if (row >= 0 && row < 3 && col >= 0 && col < 3) {
+            tabuleiro[row][col] = carta;
+            ocupacao[row][col] = true;
+            cheio = isFull();
+        }
+    }
 }
