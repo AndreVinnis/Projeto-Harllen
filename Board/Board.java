@@ -49,4 +49,11 @@ public class Board {
             }
         }
     }
+
+    //retorna a carta
+    public Card getCarta(int row, int col) {
+        if (row >= 0 && row < 3 && col >= 0 && col < 3) {
+            return tabuleiro[row][col];
+        }
+        return null; }
 }

@@ -77,5 +77,10 @@ public class Card {
             return false;
         return true;
     }
-    
+
+    //toString pra testar se ta imprimindo as cartas na interface
+    @Override public String toString() {
+        return "Card [Cima: " + numeroDeCima + ", Baixo: "
+                + numeroDeBaixo + ", Esquerda: " +
+                numeroDaEsquerda + ", Direita: " + numeroDaDireita + "]"; }
 }
