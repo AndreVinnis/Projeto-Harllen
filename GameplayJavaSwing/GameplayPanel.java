@@ -2,6 +2,8 @@ package Java.Aula_de_Laboratorio.AulasHarllen.Projetos.Projeto1.GameplayJavaSwin
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
+
 import Java.Aula_de_Laboratorio.AulasHarllen.Projetos.Projeto1.Gameplay.Gameplay;
 import Java.Aula_de_Laboratorio.AulasHarllen.Projetos.Projeto1.Entities.Card;
 import Java.Aula_de_Laboratorio.AulasHarllen.Projetos.Projeto1.Entities.Player;
@@ -12,7 +14,6 @@ public class GameplayPanel extends JPanel {
     private JTextArea cartasArea;
     private JButton[] boardButtons;
 
-    //Aqui é onde o tabuleiro é montado
     public GameplayPanel() {
         setLayout(new BorderLayout());
 
@@ -52,12 +53,22 @@ public class GameplayPanel extends JPanel {
     }
 
     private void mostrarCartasJogador(Player jogador) {
-        cartasArea.setText("");
-        for (Card carta : jogador.getBaralho()) {
-            if (carta != null) {
-                cartasArea.append(carta.toString() + "\n");
-            }
+        cartasArea.setText("Cartas disponíveis:\n");
+
+        Card[] firstThreeCards = jogador.getFilaDeCartas().escolheEntreTresCartas();
+        int i = 0;
+        for (Card carta : firstThreeCards) { //Mostra as opções que o sistema tem pra escolher
+            cartasArea.append("Carta " + (i + 1) + ": " + carta.toString() + "\n");
+            i++;
         }
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(firstThreeCards.length);
+        Card cartaEscolhida = firstThreeCards[randomIndex]; //Escolhe a carta e logo dps printa na tela qual foi
+
+        JOptionPane.showMessageDialog(null, "O sistema escolheu automaticamente: " + cartaEscolhida);
+
+        jogador.getFilaDeCartas().removeCarta(cartaEscolhida);
     }
 
     private void jogarCarta(int row, int col) {

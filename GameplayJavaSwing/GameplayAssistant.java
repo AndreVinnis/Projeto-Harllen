@@ -73,6 +73,8 @@ public class GameplayAssistant {
         }
     }
 
+
+
     private static void determinarGanhador(Gameplay partida) {
         Player jogador1 = partida.getJogador1();
         Player jogador2 = partida.getJogador2();

@@ -56,6 +56,43 @@ public class QueueCards {
         return (((head == 0) && (tail == fila.length - 1)) || (tail + 1 == head));
     }
 
+    public Card[] escolheEntreTresCartas() {
+        Card[] firstThree = new Card[3];
+        int i = 0;
+
+        for (Card card : fila) {
+            if (i < 3) {
+                firstThree[i] = card;
+                i++;
+            } else {
+                break;
+            }
+        }
+        return firstThree;
+    }
+
+    public Card selecionaCartaNaFila(int index) {
+        Card[] firstThree = escolheEntreTresCartas();
+        if (index >= 0 && index < firstThree.length) {
+            return firstThree[index];
+        }
+        return null;
+    }
+
+    public void removeCarta(Card carta) {
+        for (int i = head; i < tail; i++) {
+            int index = i % fila.length;
+            if (fila[index].equals(carta)) {
+                for (int j = index; j < tail - 1; j++) {
+                    fila[j % fila.length] = fila[(j + 1) % fila.length];
+                }
+                fila[(tail - 1) % fila.length] = null;
+                tail--;
+                break;
+            }
+        }
+    }
+
     public int busca(Card carta){
         int aux = head;
         int cont = 0;
