@@ -7,6 +7,7 @@ public class Player {
     private int quantCartas;
     private QueueCards filaDeCartas;
     private int pontuacao;
+    private Card cartaEscolhida;
 
     public Player(String nome, String cor, Card[] baralho){
         this.nome = nome;
@@ -67,5 +68,13 @@ public class Player {
             }
         }
         quantCartas --;
-    }    
+    }
+
+    public void setCartaEscolhida(Card cartaEscolhida) {
+        this.cartaEscolhida = cartaEscolhida;
+    }
+
+    public Card getCartaEscolhida() {
+        return cartaEscolhida;
+    }
 }

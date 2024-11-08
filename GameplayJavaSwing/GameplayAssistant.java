@@ -17,20 +17,29 @@ public class GameplayAssistant {
 
     public static void jogarCartaGUI(Gameplay partida, int row, int col) throws Exception {
         Player jogadorAtual = partida.getJogadorAtual();
+
         if (partida.getTabuleiro().getOcupacao()[row][col]) {
             throw new Exception("Posição já ocupada!");
         }
 
-        Card cartaEscolhida = jogadorAtual.getFilaDeCartas().dequeue();
+        Card cartaEscolhida = jogadorAtual.getCartaEscolhida();
+        if (cartaEscolhida == null) {
+            throw new Exception("Nenhuma carta foi escolhida para jogar!");
+        }
+
         Board board = partida.getTabuleiro();
         board.setCarta(row, col, cartaEscolhida);
         compararCartas(cartaEscolhida, board, row, col);
+        jogadorAtual.getFilaDeCartas().removeCarta(cartaEscolhida);
+        jogadorAtual.setCartaEscolhida(null);
+
         partida.alternarJogador();
 
         if (board.isFull()) {
             determinarGanhador(partida);
         }
     }
+
 
     private static void compararCartas(Card carta, Board tabuleiro, int linha, int coluna) {
         boolean compCima = linha > 0;

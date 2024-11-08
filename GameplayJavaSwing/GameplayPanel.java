@@ -42,6 +42,7 @@ public class GameplayPanel extends JPanel {
 
     public void startGame(Gameplay partida) {
         this.partida = partida;
+        atualizarTabuleiro();
         infoArea.setText("Novo jogo iniciado!\n");
         iniciarRodada();
     }
@@ -68,14 +69,16 @@ public class GameplayPanel extends JPanel {
 
         JOptionPane.showMessageDialog(null, "O sistema escolheu automaticamente: " + cartaEscolhida);
 
-        jogador.getFilaDeCartas().removeCarta(cartaEscolhida);
+        jogador.setCartaEscolhida(cartaEscolhida);
     }
+
 
     private void jogarCarta(int row, int col) {
         try {
             GameplayAssistant.jogarCartaGUI(partida, row, col);
             atualizarTabuleiro();
             verificarVencedor();
+
             if (partida.isPartidaAtiva()) {
                 iniciarRodada();
             }
